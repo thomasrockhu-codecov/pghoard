@@ -1,10 +1,10 @@
 PGHoard |BuildStatus|_
 ======================
 
-.. |BuildStatus| image:: https://github.com/aiven/pghoard/actions/workflows/build.yml/badge.svg?branch=main
-.. _BuildStatus: https://github.com/aiven/pghoard/actions
-.. image:: https://codecov.io/gh/aiven/pghoard/branch/main/graph/badge.svg?token=nLr7M7hvCx
-   :target: https://codecov.io/gh/aiven/pghoard
+.. |BuildStatus| image:: https://github.com/Aiven-Open/pghoard/actions/workflows/build.yml/badge.svg?branch=main
+.. _BuildStatus: https://github.com/Aiven-Open/pghoard/actions
+.. image:: https://codecov.io/gh/Aiven-Open/pghoard/branch/main/graph/badge.svg?token=nLr7M7hvCx
+   :target: https://codecov.io/gh/Aiven-Open/pghoard
 
 ``pghoard`` is a PostgreSQL® backup daemon and restore tooling that stores backup data in cloud object stores.
 
@@ -84,7 +84,7 @@ PGHoard can backup and restore PostgreSQL versions 9.6 and above, but is
 only tested and actively developed with version 10 and above.
 
 The daemon is implemented in Python and is tested and developed with version
-3.8 and above. The following Python modules are required:
+3.7 and above. The following Python modules are required:
 
 * psycopg2_ to look up transaction log metadata
 * requests_ for the internal client-server architecture
@@ -128,18 +128,24 @@ Vagrant
 =======
 
 The Vagrantfile can be used to setup a vagrant development environment.   The vagrant environment has
-python 3.8, 3.9 and 3.10 virtual environments and installations of postgresql 10, 11 and 12, 13 and 14.
+python 3.7, 3.8, 3.9 and 3.10 virtual environments and installations of postgresql 10, 11 and 12, 13 and 14.
 
 By default vagrant up will start a Virtualbox environment. The Vagrantfile will also work for libvirt, just prefix
 ``VAGRANT_DEFAULT_PROVIDER=libvirt`` to the ``vagrant up`` command.
 
-Any combination of Python (3.8, 3.9 and 3.10) and Postgresql (10, 11, 12, 13 and 14)
+Any combination of Python (3.7, 3.8, 3.9 and 3.10) and Postgresql (10, 11, 12, 13 and 14)
 
 Bring up vagrant instance and connect via ssh::
 
   vagrant up
   vagrant ssh
   vagrant@ubuntu2004:~$ cd /vagrant
+
+Test with Python 3.7 and Postgresql 10::
+
+  vagrant@ubuntu2004:~$ source ~/venv3.7/bin/activate
+  vagrant@ubuntu2004:~$ PG_VERSION=10 make unittest
+  vagrant@ubuntu2004:~$ deactivate
 
 Test with Python 3.8 and Postgresql 11::
 
